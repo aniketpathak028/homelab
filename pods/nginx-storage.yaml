@@ -9,6 +9,8 @@ spec:
       volumeMounts:
           - mountPath: /scratch
             name: scratch-volume
+          - mountPath: /app/data
+            name: mealie-data
     - image: busybox
       name: busybox
       command: ["/bin/sh", "-c"]
@@ -20,3 +22,6 @@ spec:
     - name: scratch-volume
       emptyDir:
         sizeLimit: 500Mi
+    - name: mealie-data
+      persistentVolumeClaim:
+        claimName: mealie-data
